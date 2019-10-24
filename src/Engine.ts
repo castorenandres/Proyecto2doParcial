@@ -1,9 +1,11 @@
 import GameContext from "./GameContext";
 import Character from "./Character";
 import Time from "./Time";
+import Moneda from "./Moneda";
 
 class Engine{
     private character: Character = null;
+    private moneda: Moneda = null;
 
     public start = () => {
         this.init();
@@ -26,6 +28,7 @@ class Engine{
 
     public init = () => {
         this.character = new Character();
+        this.moneda = new Moneda();
     };
 
     public tick = () => {
@@ -34,6 +37,8 @@ class Engine{
 
         this.character.update();
         this.character.render();
+        this.moneda.update();
+        this.moneda.reder();
         
         requestAnimationFrame(this.tick);
     };

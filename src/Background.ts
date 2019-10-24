@@ -23,3 +23,5 @@ class Background{
         context.drawImage(this.backgroundImage, finalImageWidth, 0, finalImageWidth, finalImageHeight);
     }
 }
+
+export default Background;
