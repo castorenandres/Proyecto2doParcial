@@ -9,5 +9,5 @@ engine.start();
 canvas.addEventListener("mousedown", engine.mouseDownListener);
 canvas.addEventListener("mousemove", engine.mouseDownListener);
 canvas.addEventListener("mouseout", engine.mouseDownListener);
-canvas.addEventListener("mousemoup", engine.mouseDownListener);
+canvas.addEventListener("mouseup", engine.mouseDownListener);
 */
