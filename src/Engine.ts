@@ -31,7 +31,9 @@ class Engine{
     public tick = () => {
         this.clearScreen();
         Time.update();
-        // character render
+        this.character.update();
+        this.character.render();
+        requestAnimationFrame(this.tick);
     };
 }
 
