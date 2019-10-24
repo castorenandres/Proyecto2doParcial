@@ -35,7 +35,7 @@ class Playing extends Scene {
 
     public render =() => {
         this.background.render();
-        console.log("UP")
+        
         this.character.render();
         this.moneda.render();
     }

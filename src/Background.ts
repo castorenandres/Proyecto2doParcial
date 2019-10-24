@@ -20,7 +20,7 @@ class Background{
         const finalImageWidth = ((naturalWidth*height)/naturalHeight);
         const finalImageHeight = height;
 
-        context.drawImage(this.backgroundImage, finalImageWidth, 0, finalImageWidth, finalImageHeight);
+        context.drawImage(this.backgroundImage, 0, 0, finalImageWidth, finalImageHeight);
     }
 }
 
