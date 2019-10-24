@@ -12,6 +12,8 @@ class Character {
     private charHeight: number = 75; // pendiente
     private frameCounter = 0;
     private currentCharFrame =0;
+    private character = new Image();
+
 
     private spritedead = new Image();
     private spriteidle  = new Image();
@@ -29,6 +31,14 @@ class Character {
         this.spritejump.src = spriteJump;
         this.spriteland.src = spriteLand;
         this.spritedead.src = spriteDead;
+
+        this.character = this.spriteidle;
+
+
+    };
+
+    public update = () => {
+        //
     };
 
     public render = () => {
@@ -37,7 +47,9 @@ class Character {
 
         context.save();
         context.beginPath();
-        //context.drawImage(this.spriteidle)
+        context.drawImage(this.character,100,100,this.charWidth,this.charHeight);
+        context.closePath();
+        context.restore();
     };
 
 };
