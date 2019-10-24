@@ -47,8 +47,8 @@ class Moneda {
         let [xpos, ypos] = this.position;
         const offsetX = 34;
         const sy = 0;
-        const sWidth = 32;
-        const sHeight = 80;
+        const sWidth = 29;
+        const sHeight = 29;
 
         context.save();
         context.beginPath();
