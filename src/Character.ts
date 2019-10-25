@@ -18,6 +18,12 @@ class Character {
     private currentMouseEvent: string = "";
     private offsetx: number = 62.1;
 
+    // hitbox
+    private RightSide = this.position[0] + this.charWidth;
+    private LeftSide = this.position[0];
+    private TopSide = this.position[1];
+    private BottomSide = this.position[1] + this.charHeight;
+
 
     private spritedead = new Image();
     private spriteidle  = new Image();
@@ -38,28 +44,31 @@ class Character {
 
         this.character = this.spriteidle;
 
-        this.position = [(width - this.charWidth) / 2, height * .8 - this.charHeight];
+        this.position = [(width - this.charWidth) / 2, height * 0.55 - this.charHeight];
     };
 
     public mouseMovementHandler = (event: MouseEvent) => {
         let [coordx, coordy] = this.position;
         const {context} = GameContext;
         const {width, height} = context.canvas;
-
-        if (event.type === "mousedown" && (this.currentMouseEvent === "" || this.currentMouseEvent === "mouseup")){
-            this.click = true;
-            this.lastMouseEvent = this.currentMouseEvent;
-            this.currentMouseEvent = "mousedown";
-            this.currentCharFrame = 0;
-        } else if (event.type === "mouseup" && this.currentMouseEvent === "mousedown") {
-            this.click = false;
-            this.lastMouseEvent = this.currentMouseEvent;
-            this.currentMouseEvent = "mouseup";
-            this.currentCharFrame = 0;
-        } else if (event.type === "mousedown" && this.currentMouseEvent === "mousedown") {
-            this.click = true;
-            this.lastMouseEvent = this.currentMouseEvent;
-            this.currentMouseEvent = "mousedown";
+        console.log(this.RightSide)
+        // mouse tiene que estar sobre el personaje para moverse
+        if (event.offsetX < this.RightSide  && event.offsetX > this.LeftSide && event.offsetY < this.BottomSide && event.offsetY > this.TopSide) {
+            if (event.type === "mousedown" && (this.currentMouseEvent === "" || this.currentMouseEvent === "mouseup")){
+                this.click = true;
+                this.lastMouseEvent = this.currentMouseEvent;
+                this.currentMouseEvent = "mousedown";
+                this.currentCharFrame = 0;
+            } else if (event.type === "mouseup" && this.currentMouseEvent === "mousedown") {
+                this.click = false;
+                this.lastMouseEvent = this.currentMouseEvent;
+                this.currentMouseEvent = "mouseup";
+                this.currentCharFrame = 0;
+            } else if (event.type === "mousedown" && this.currentMouseEvent === "mousedown") {
+                this.click = true;
+                this.lastMouseEvent = this.currentMouseEvent;
+                this.currentMouseEvent = "mousedown";
+            }
         }
 
         if (this.click) { // mouse has to enter the character hit box to be able to move pendiente
@@ -73,7 +82,11 @@ class Character {
     public update = () => {
         const {context} = GameContext;
         const {width} = context.canvas;
-
+        this.RightSide = this.position[0] + this.charWidth;
+        this.LeftSide = this.position[0];
+        this.TopSide = this.position[1];
+        this.BottomSide = this.position[1] + this.charHeight;
+        
         let [xpos, ypos] = this.position;
 
         // posicion actual con movimiento de mouse pendiente

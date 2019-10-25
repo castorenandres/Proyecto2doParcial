@@ -18,8 +18,8 @@ class Engine{
         requestAnimationFrame(this.tick);
     };
 
-    public mouseEventListener = (event: MouseEvent) => {
-        this.character.mouseMovementHandler(event);
+    public handleMouseDown = (event: MouseEvent) => {
+        this.currentScene.handleMouseDown(event);
     };
 
     public clearScreen = () => {

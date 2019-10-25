@@ -4,6 +4,6 @@ abstract class Scene {
     public abstract update = () => {};
     public abstract render = () => {};
 
-    public handleMouseDown = (event: KeyboardEvent, engine: Engine) => {};
+    public handleMouseDown = (event: MouseEvent) => {};
 };
 export default Scene;
