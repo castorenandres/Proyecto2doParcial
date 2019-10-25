@@ -13,9 +13,10 @@ class Playing extends Scene {
     private laser: Laser = null;
     private background = new Background(this);
 
-    public handleMouseDown = (event: KeyboardEvent, engine: Engine) => {
+    public handleMouseDown = (event: MouseEvent) => {
         //Se ponen los handles del mouse
-    }
+        this.character.mouseMovementHandler(event); 
+    };
 
     public getCharacter = () => {
         return this.character;

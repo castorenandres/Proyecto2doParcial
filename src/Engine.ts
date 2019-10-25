@@ -19,6 +19,10 @@ class Engine{
         requestAnimationFrame(this.tick);
     };
 
+    public handleMouseDown = (event: MouseEvent) => {
+        this.currentScene.handleMouseDown(event);
+    };
+
     public clearScreen = () => {
         const context = GameContext.context;
         const canvas = context.canvas;

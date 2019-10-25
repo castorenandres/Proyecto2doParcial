@@ -9,9 +9,9 @@ GameContext.context = context;
 const engine = new GameEngine();
 engine.start();
 
-/*
-canvas.addEventListener("mousedown", engine.mouseDownListener);
-canvas.addEventListener("mousemove", engine.mouseDownListener);
-canvas.addEventListener("mouseout", engine.mouseDownListener);
-canvas.addEventListener("mouseup", engine.mouseDownListener);
-*/
+
+canvas.addEventListener("mousedown", engine.handleMouseDown);
+canvas.addEventListener("mouseup", engine.handleMouseDown);
+canvas.addEventListener("mousemove", engine.handleMouseDown);
+canvas.addEventListener("mouseenter", engine.handleMouseDown);
+canvas.addEventListener("mouseout", engine.handleMouseDown);
