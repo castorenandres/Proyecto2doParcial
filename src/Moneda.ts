@@ -42,7 +42,7 @@ class Moneda {
             this.currentCharFrame = (this.currentCharFrame + 1) % 9;
         }
     }
-    public reder = () => {
+    public render = () => {
         const {context} = GameContext;
         let [xpos, ypos] = this.position;
         const offsetX = 34;

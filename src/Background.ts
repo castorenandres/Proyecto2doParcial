@@ -1,5 +1,5 @@
-import Playing from "./Scences/Playing"
-import background from "./assets/Playing.jpg"
+import Playing from "./Scenes/Playing"
+import background from "/assets/pa.jpg";
 import GameContext from "./GameContext";
 class Background{
     private backgroundImage = new Image ();
@@ -20,7 +20,7 @@ class Background{
         const finalImageWidth = ((naturalWidth*height)/naturalHeight);
         const finalImageHeight = height;
 
-        context.drawImage(this.backgroundImage, finalImageWidth, 0, finalImageWidth, finalImageHeight);
+        context.drawImage(this.backgroundImage, 0, 0, finalImageWidth, finalImageHeight);
     }
 }
 
