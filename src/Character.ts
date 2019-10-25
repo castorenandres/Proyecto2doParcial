@@ -92,9 +92,10 @@ class Character {
     public CharacterDead = () => { // checar si funciona
         this.currentCharFrame = 0;
         this.offsetx = 94.2;
-        
+        this.frameCounter += 1;
+
         if (this.currentCharFrame < 10) { 
-            if (this.frameCounter % 3 === 0) {
+            if (this.frameCounter % 6 === 0) {
                 this.currentCharFrame = (this.currentCharFrame + 1);
             }
         }
