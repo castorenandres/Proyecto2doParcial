@@ -5,6 +5,7 @@ import MenuScene from "./MenuScene";
 import Background from "../Background";
 import Moneda from "../Moneda"
 import Laser from "../laser";
+import Soundtrack from "/assets/soundtrack.mp3";
 //import laser
 
 class Playing extends Scene {
@@ -13,6 +14,7 @@ class Playing extends Scene {
     private moneda: Moneda = null;
     private laser: Laser = null;
     private background = new Background(this);
+    private soundtrack = new Audio(Soundtrack);
 
     public handleMouseDown = (event: MouseEvent) => {
         //Se ponen los handles del mouse
@@ -34,6 +36,9 @@ class Playing extends Scene {
         for(let x = 0; x < 4; x++){
             this.lasers.push(new Laser())
         }
+        this.soundtrack.volume = 0.5;
+        this.soundtrack.play();
+        this.soundtrack.loop = true;
     }
 
     public update = () => {
@@ -42,7 +47,10 @@ class Playing extends Scene {
         //this.laser.update();
         for(let x = 0; x < 4; x++){
             this.lasers[x].update();
+            this.lasers[x].checkCollision(this.character);
         }
+
+        this.character.checkCollisionCoin(this.moneda);
     }
 
     public render =() => {

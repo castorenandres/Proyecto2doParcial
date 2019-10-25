@@ -5,8 +5,8 @@ type coords = [number, number];
 
 class Moneda {
     private position : coords = [0, 0];
-    private monedaWidth: number = 32;
-    private monedaHeight: number = 32;
+    private monedaWidth: number = 29;
+    private monedaHeight: number = 29;
     private frameCounter = 0;
     private currentCharFrame = 0;
     private moneda = new Image();
@@ -87,6 +87,11 @@ class Moneda {
 
     public random(max: number){
         return Math.floor(Math.random() * Math.floor(max))
+    }
+
+    public changeCoinPosition(){
+        this.position = [(this.random(5) * 125) + 87.5 + 35, (this.random(5) * 125) + 87.5 + 35]
+        
     }
 
     
