@@ -23,6 +23,22 @@ class Moneda {
         return this.position;
     }
 
+    public getRightSide () {
+        return this.RightSide;
+    }
+
+    public getLeftSide () {
+        return this.LeftSide;
+    }
+    
+    public getTopSide () {
+        return this.TopSide;
+    }
+    
+    public getBottomSide () {
+        return this.BottomSide;
+    }
+
     //recibe una position [x,y]
     public setPosition(position){
         this.position = position;

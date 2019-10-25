@@ -3,6 +3,7 @@ import spriteIdle from "/assets/spritesheetKnightIdle.png";
 import spriteJump from "/assets/spritesheetKnightJump.png";
 import spriteLand from "/assets/spritesheetKnightLand.png";
 import GameContext from "./GameContext";
+import Moneda from "./Moneda";
 
 type coords = [number, number];
 
@@ -47,6 +48,17 @@ class Character {
         this.position = [(width - this.charWidth) / 2, height * 0.55 - this.charHeight];
     };
 
+    public checkCollisionCoin = (moneda: Moneda) => {
+        const mRight = moneda.getRightSide();
+        const mLeft = moneda.getLeftSide();
+        const mTop = moneda.getTopSide();
+        const mBottom = moneda.getBottomSide();
+
+        if (this.LeftSide  < mRight && this.RightSide > mLeft && this.TopSide < mBottom && this.BottomSide > mTop) {
+            // incrementa score y la moneda aparece en otra parte.
+        }
+    };
+
     public mouseMovementHandler = (event: MouseEvent) => {
         let [coordx, coordy] = this.position;
         const {context} = GameContext;
@@ -86,7 +98,7 @@ class Character {
         this.LeftSide = this.position[0];
         this.TopSide = this.position[1];
         this.BottomSide = this.position[1] + this.charHeight;
-        
+
         let [xpos, ypos] = this.position;
 
         // posicion actual con movimiento de mouse pendiente
