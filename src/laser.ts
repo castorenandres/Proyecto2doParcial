@@ -1,6 +1,6 @@
 import GameContext from "./GameContext";
 import Character from "./Character";
-import laserImage from "/assets/laser.png"
+import laserImage from "/assets/laserBueno.png"
 import Time from "./Time"
 
 type coords = [number, number];
@@ -60,7 +60,18 @@ class laser{
         this.position = [posX, posY];
 
         if(posY < 0 || posY > width || posX < 0 || posX > width){
-            delete this.laser
+            if(this.axis < .5){
+                //Vertial
+                posX = (this.random(5) * 125) + 87.5 + 45
+                this.position = [posX, 0]
+                this.horizontal = false;
+            }else{
+                //Horizontal
+                posY = (this.random(5) * 125) + 87.5 + 45
+                this.position = [0, posY]
+                this.horizontal = true;
+                //Rotar la imagen 90 grados
+            }
         }
 
     }

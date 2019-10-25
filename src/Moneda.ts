@@ -50,7 +50,7 @@ class Moneda {
         this.spritemoneda.src = spriteMoneda;
         this.moneda = this.spritemoneda;
 
-        this.position = [(width - this.monedaWidth) / 2, height * .8 - this.monedaHeight];
+        this.position = [(this.random(5) * 125) + 87.5 + 35, (this.random(5) * 125) + 87.5 + 35];
     }
 
     public update = () => {
@@ -84,6 +84,12 @@ class Moneda {
         context.closePath();
         context.restore();
     }
+
+    public random(max: number){
+        return Math.floor(Math.random() * Math.floor(max))
+    }
+
+    
 }
 
 export default Moneda;

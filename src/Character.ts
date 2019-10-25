@@ -51,6 +51,8 @@ class Character {
 
         this.character = this.spriteidle;
 
+        
+
         this.position = [(width - this.charWidth) / 2, height * 0.55 - this.charHeight];
     };
 
