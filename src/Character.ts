@@ -2,6 +2,8 @@ import spriteDead from "/assets/spritesheetKnightDead.png";
 import spriteIdle from "/assets/spritesheetKnightIdle.png";
 import spriteJump from "/assets/spritesheetKnightJump.png";
 import spriteLand from "/assets/spritesheetKnightLand.png";
+import jumpSound from "/assets/jump.wav";
+import landSound from "/assets/land.ogg";
 import GameContext from "./GameContext";
 import Moneda from "./Moneda";
 
@@ -30,6 +32,8 @@ class Character {
     private spriteidle  = new Image();
     private spritejump = new Image();
     private spriteland = new Image();
+    private soundJump = new Audio(jumpSound);
+    private soundLand = new Audio(landSound);
 
     public getPosition () {
         return this.position;
@@ -42,6 +46,8 @@ class Character {
         this.spritejump.src = spriteJump;
         this.spriteland.src = spriteLand;
         this.spritedead.src = spriteDead;
+        this.soundJump.volume = 0.8;
+        this.soundLand.volume = 0.5;
 
         this.character = this.spriteidle;
 
@@ -67,6 +73,9 @@ class Character {
         // mouse tiene que estar sobre el personaje para moverse
         if (event.offsetX < this.RightSide  && event.offsetX > this.LeftSide && event.offsetY < this.BottomSide && event.offsetY > this.TopSide) {
             if (event.type === "mousedown" && (this.currentMouseEvent === "" || this.currentMouseEvent === "mouseup")){
+                if(this.soundJump.paused) {
+                    this.soundJump.play();
+                }
                 this.click = true;
                 this.lastMouseEvent = this.currentMouseEvent;
                 this.currentMouseEvent = "mousedown";
@@ -145,6 +154,9 @@ class Character {
                     this.currentCharFrame = (this.currentCharFrame + 1);
                 }
             } else { // change to idle animation
+                if(this.soundLand.paused) {
+                    this.soundLand.play();
+                }
                 this.lastMouseEvent = this.currentMouseEvent;
                 this.currentMouseEvent = "";
             }
