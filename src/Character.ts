@@ -1,9 +1,10 @@
-import spriteDead from "/assets/spritesheetKnightDead.png";
+import spriteDead from "/assets/spritesheetKnightDeadNew.png";
 import spriteIdle from "/assets/spritesheetKnightIdle.png";
 import spriteJump from "/assets/spritesheetKnightJump.png";
 import spriteLand from "/assets/spritesheetKnightLand.png";
 import jumpSound from "/assets/jump.wav";
 import landSound from "/assets/land.ogg";
+import grabCoin from "/assets/grabCoin.wav";
 import GameContext from "./GameContext";
 import Moneda from "./Moneda";
 
@@ -11,8 +12,8 @@ type coords = [number, number];
 
 class Character {
     private position: coords = [0,0];
-    private charWidth: number = 60;
-    private charHeight: number = 92;
+    private charWidth: number = 57;
+    private charHeight: number = 80;
     private frameCounter = 0;
     private currentCharFrame = 0;
     private click: boolean = false;
@@ -20,6 +21,7 @@ class Character {
     private lastMouseEvent: string = "";
     private currentMouseEvent: string = "";
     private offsetx: number = 62.1;
+    private score: number = 0;
 
     // hitbox
     private RightSide = this.position[0] + this.charWidth;
@@ -34,9 +36,26 @@ class Character {
     private spriteland = new Image();
     private soundJump = new Audio(jumpSound);
     private soundLand = new Audio(landSound);
+    private coinGrab = new Audio(grabCoin);
 
     public getPosition () {
         return this.position;
+    }
+
+    public getRightSide () {
+        return this.RightSide;
+    }
+
+    public getLeftSide () {
+        return this.LeftSide;
+    }
+    
+    public getTopSide () {
+        return this.TopSide;
+    }
+    
+    public getBottomSide () {
+        return this.BottomSide;
     }
 
     public constructor () {
@@ -48,20 +67,36 @@ class Character {
         this.spritedead.src = spriteDead;
         this.soundJump.volume = 0.8;
         this.soundLand.volume = 0.5;
+        this.coinGrab.volume = 1;
 
         this.character = this.spriteidle;
 
         this.position = [(width - this.charWidth) / 2, height * 0.55 - this.charHeight];
     };
 
-    public checkCollisionCoin = (moneda: Moneda) => {
-        const mRight = moneda.getRightSide();
-        const mLeft = moneda.getLeftSide();
-        const mTop = moneda.getTopSide();
-        const mBottom = moneda.getBottomSide();
+    public checkCollisionCoin = (moneda: Moneda) => { // checar si es mejor aqui o en moneda o current scene
+        const mRight = moneda.getRightSide() + 20;
+        const mLeft = moneda.getLeftSide() - 20;
+        const mTop = moneda.getTopSide() + 20;
+        const mBottom = moneda.getBottomSide() - 20;
 
         if (this.LeftSide  < mRight && this.RightSide > mLeft && this.TopSide < mBottom && this.BottomSide > mTop) {
             // incrementa score y la moneda aparece en otra parte.
+            if(this.coinGrab.paused) {
+                this.coinGrab.play();
+            }
+            this.score += 1;
+        }
+    };
+
+    public CharacterDead = () => { // checar si funciona
+        this.currentCharFrame = 0;
+        this.offsetx = 94.2;
+        
+        if (this.currentCharFrame < 10) { 
+            if (this.frameCounter % 3 === 0) {
+                this.currentCharFrame = (this.currentCharFrame + 1);
+            }
         }
     };
 
@@ -118,7 +153,7 @@ class Character {
             
 
             
-            if (this.frameCounter % 3 === 0) {
+            if (this.frameCounter % 6 === 0) {
                 this.currentCharFrame = (this.currentCharFrame + 1) % 10;
             }
         }
@@ -130,27 +165,21 @@ class Character {
 
             
             if (this.currentCharFrame < 4) { 
-                if (this.frameCounter % 3 === 0) {
+                if (this.frameCounter % 6 === 0) {
                     this.currentCharFrame = (this.currentCharFrame + 1);
                 }
-            } else {
-                this.currentCharFrame = 4;
             }
             
         }
 
-        if (this.currentMouseEvent === "mousedown" && this.lastMouseEvent === "mousedown") { 
-            this.currentCharFrame = 5;
-        }
+        
 
         if (this.currentMouseEvent === "mouseup" ) { // land animation
             this.character = this.spriteland;
             this.offsetx = 62.4;
             
-
-            
-            if (this.currentCharFrame < 6) {
-                if (this.frameCounter % 3 === 0) {
+            if (this.currentCharFrame < 5) {
+                if (this.frameCounter % 6 === 0) {
                     this.currentCharFrame = (this.currentCharFrame + 1);
                 }
             } else { // change to idle animation
@@ -163,9 +192,6 @@ class Character {
             
         }
 
-        
-        
-        
     };
 
     public render = () => {
@@ -179,6 +205,14 @@ class Character {
         context.beginPath();
         context.translate(xpos, ypos);
         context.drawImage(this.character,this.currentCharFrame * this.offsetx, sy, sWidth, sHeight, 0, 0,this.charWidth,this.charHeight);
+        context.closePath();
+        context.restore();
+
+        context.save();
+        context.beginPath();
+        context.font = "50px Arial";
+        context.fillStyle = "yellow";
+        context.fillText(this.score.toString(),380,60);
         context.closePath();
         context.restore();
     };
