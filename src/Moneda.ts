@@ -13,6 +13,12 @@ class Moneda {
 
     private spritemoneda = new Image();
 
+    // hitbox
+    private RightSide = this.position[0] + this.monedaWidth;
+    private LeftSide = this.position[0];
+    private TopSide = this.position[1];
+    private BottomSide = this.position[1] + this.monedaHeight;
+
     public getPosition(){
         return this.position;
     }
@@ -34,6 +40,10 @@ class Moneda {
     public update = () => {
         const {context} = GameContext;
         const {width} = context.canvas;
+        this.RightSide = this.position[0] + this.monedaWidth;
+        this.LeftSide = this.position[0];
+        this.TopSide = this.position[1];
+        this.BottomSide = this.position[1] + this.monedaHeight;
 
         let [xpos, ypos] = this.position;
 
