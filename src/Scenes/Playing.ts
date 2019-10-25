@@ -34,6 +34,7 @@ class Playing extends Scene {
     public update = () => {
         this.character.update();
         this.moneda.update();
+        this.laser.update();
     }
 
     public render =() => {
