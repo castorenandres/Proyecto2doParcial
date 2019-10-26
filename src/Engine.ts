@@ -4,6 +4,7 @@ import Time from "./Time";
 import Moneda from "./Moneda";
 import Scene from "./Scenes/Scene";
 import Playing from "./Scenes/Playing";
+import Laser from "./laser";
 
 class Engine{
     private currentScene: Scene = null;
