@@ -19,9 +19,22 @@ class Engine{
         requestAnimationFrame(this.tick);
     };
 
+    public setCurrentScene = (scene: Scene) => {
+        this.currentScene = scene;
+        this.currentScene.enter();
+      };
+
     public handleMouseDown = (event: MouseEvent) => {
         this.currentScene.handleMouseDown(event);
     };
+
+    public keydownHandler = (event: KeyboardEvent) => {
+        this.currentScene.KeyDownHandler(event, this);
+      };
+    
+      public keyupHandler = (event: KeyboardEvent) => {
+        this.currentScene.KeyUpHandler(event);
+      };
 
     public clearScreen = () => {
         const context = GameContext.context;

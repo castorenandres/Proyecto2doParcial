@@ -18,9 +18,11 @@ class Playing extends Scene {
     
 
     public handleMouseDown = (event: MouseEvent) => {
-        //Se ponen los handles del mouse
         this.character.mouseMovementHandler(event); 
     };
+
+    public  KeyUpHandler = (event: KeyboardEvent) => {};
+    public  KeyDownHandler = (event: KeyboardEvent, engine: Engine) => {};
 
     public getCharacter = () => {
         return this.character;
@@ -33,7 +35,7 @@ class Playing extends Scene {
     enter = () => {
         this.character = new Character();
         this.moneda = new Moneda();
-        this.soundtrack.volume = 0.5;
+        this.soundtrack.volume = 0.2;
         this.soundtrack.play();
         this.soundtrack.loop = true;
         //this.laser = new Laser();

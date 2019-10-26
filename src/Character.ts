@@ -97,10 +97,6 @@ class Character {
         this.currentCharFrame = 0;
         this.offsetx = 94.2;
         this.frameCounter += 1;
-<<<<<<< HEAD
-
-=======
->>>>>>> b0fe7c5c3ac269bdbe43bf242734d2db60f449a3
         if (this.currentCharFrame < 10) { 
             if (this.frameCounter % 6 === 0) {
                 this.currentCharFrame = (this.currentCharFrame + 1);

@@ -15,3 +15,5 @@ canvas.addEventListener("mouseup", engine.handleMouseDown);
 canvas.addEventListener("mousemove", engine.handleMouseDown);
 canvas.addEventListener("mouseenter", engine.handleMouseDown);
 canvas.addEventListener("mouseout", engine.handleMouseDown);
+canvas.addEventListener("keydown", engine.keydownHandler);
+canvas.addEventListener("keyup", engine.keyupHandler);
