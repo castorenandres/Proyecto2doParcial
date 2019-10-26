@@ -22,7 +22,15 @@ class Playing extends Scene {
     };
 
     public  KeyUpHandler = (event: KeyboardEvent) => {};
-    public  KeyDownHandler = (event: KeyboardEvent, engine: Engine) => {};
+    public  KeyDownHandler = (event: KeyboardEvent, engine: Engine) => {
+        const {key} = event;
+
+        switch(key){
+            case "Escape":
+                engine.setCurrentScene(new MenuScene());
+                break;
+        }
+    };
 
     public getCharacter = () => {
         return this.character;
