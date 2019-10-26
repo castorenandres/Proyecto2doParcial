@@ -6,6 +6,7 @@ import Time from "./Time"
 type coords = [number, number];
 
 class laser{
+
     private position: coords = [0, 0]
     private direction: coords = [0,0]
     private laserWidth: number = 50;
@@ -15,6 +16,11 @@ class laser{
     private axis: number = null;
     private horizontal: boolean = null;
     
+    private RightSide = this.position[0] + this.laser.naturalWidth;
+    private LeftSide = this.position[0];
+    private TopSide = this.position[1];
+    private BottomSide = this.position[1] + this.laser.naturalHeight;
+
     public getPosition(){
         return this.position;
     }
@@ -50,6 +56,11 @@ class laser{
 
         let [posX, posY] = this.position;
 
+        this.RightSide = this.position[0] + this.laser.naturalWidth;
+        this.LeftSide = this.position[0];
+        this.TopSide = this.position[1];
+        this.BottomSide = this.position[1] + this.laser.naturalHeight;
+
         if(this.axis < .5){
             posY = posY + this.speed * Time.deltaTime;
         }else{
@@ -57,7 +68,11 @@ class laser{
             
         }
 
+        
+
         this.position = [posX, posY];
+        
+        
 
         if(posY < 0 || posY > width || posX < 0 || posX > width){
             if(this.axis < .5){
@@ -86,7 +101,6 @@ class laser{
             context.closePath();
             context.restore();
         }else{
-            console.log("laser horizontal")
             context.save();
             context.beginPath();
             context.translate(posX, posY)
@@ -99,6 +113,18 @@ class laser{
 
     public random(max: number){
         return Math.floor(Math.random() * Math.floor(max))
+    }
+
+    public checkCollision = (Character: Character) => {
+        const mRight = Character.getRightSide() + 20;
+        const mLeft = Character.getLeftSide() - 20;
+        const mTop = Character.getTopSide() + 20;
+        const mBottom = Character.getBottomSide() - 20;
+
+        if (this.LeftSide  < mRight && this.RightSide > mLeft && this.TopSide < mBottom && this.BottomSide > mTop) {
+            // incrementa score y la moneda aparece en otra parte.
+            Character.CharacterDead();
+        }
     }
 
 }

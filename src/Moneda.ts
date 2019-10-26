@@ -89,6 +89,11 @@ class Moneda {
         return Math.floor(Math.random() * Math.floor(max))
     }
 
+    public changeCoinPosition(){
+        this.position = [(this.random(5) * 125) + 87.5 + 35, (this.random(5) * 125) + 87.5 + 35]
+        
+    }
+
     
 }
 

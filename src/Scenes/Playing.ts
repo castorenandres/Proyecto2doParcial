@@ -39,6 +39,9 @@ class Playing extends Scene {
         for(let x = 0; x < 4; x++){
             this.lasers.push(new Laser())
         }
+        this.soundtrack.volume = 0.5;
+        this.soundtrack.play();
+        this.soundtrack.loop = true;
     }
 
     public update = () => {
@@ -49,7 +52,10 @@ class Playing extends Scene {
         //this.laser.update();
         for(let x = 0; x < 4; x++){
             this.lasers[x].update();
+            this.lasers[x].checkCollision(this.character);
         }
+
+        this.character.checkCollisionCoin(this.moneda);
     }
 
     public render =() => {

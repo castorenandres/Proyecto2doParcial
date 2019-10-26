@@ -24,7 +24,7 @@ class Character {
     private score: number = 0;
 
     // hitbox
-    private RightSide = this.position[0] + this.charWidth;
+    private RightSide = this.position[0] + this.charWidth; 
     private LeftSide = this.position[0];
     private TopSide = this.position[1];
     private BottomSide = this.position[1] + this.charHeight;
@@ -86,8 +86,10 @@ class Character {
             // incrementa score y la moneda aparece en otra parte.
             if(this.coinGrab.paused) {
                 this.coinGrab.play();
+                moneda.changeCoinPosition();
+                this.score += 1;
             }
-            this.score += 1;
+            
         }
     };
 
@@ -95,7 +97,10 @@ class Character {
         this.currentCharFrame = 0;
         this.offsetx = 94.2;
         this.frameCounter += 1;
+<<<<<<< HEAD
 
+=======
+>>>>>>> b0fe7c5c3ac269bdbe43bf242734d2db60f449a3
         if (this.currentCharFrame < 10) { 
             if (this.frameCounter % 6 === 0) {
                 this.currentCharFrame = (this.currentCharFrame + 1);
