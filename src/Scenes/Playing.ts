@@ -15,6 +15,7 @@ class Playing extends Scene {
     private laser: Laser = null;
     private background = new Background(this);
     private soundtrack = new Audio(Soundtrack);
+    
 
     public handleMouseDown = (event: MouseEvent) => {
         //Se ponen los handles del mouse
@@ -39,9 +40,6 @@ class Playing extends Scene {
         for(let x = 0; x < 4; x++){
             this.lasers.push(new Laser())
         }
-        this.soundtrack.volume = 0.5;
-        this.soundtrack.play();
-        this.soundtrack.loop = true;
     }
 
     public update = () => {
