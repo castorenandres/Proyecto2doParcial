@@ -44,8 +44,8 @@ class Playing extends Scene {
         this.character = new Character();
         this.moneda = new Moneda();
         this.soundtrack.volume = 0.2;
-        this.soundtrack.play();
         this.soundtrack.loop = true;
+        this.soundtrack.play();
         //this.laser = new Laser();
         for(let x = 0; x < 4; x++){
             this.lasers.push(new Laser())

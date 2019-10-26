@@ -14,6 +14,8 @@ class Character {
     private position: coords = [0,0];
     private charWidth: number = 57;
     private charHeight: number = 80;
+    private sWidth = 57;
+    private sHeight = 80;
     private frameCounter = 0;
     private currentCharFrame = 0;
     private click: boolean = false;
@@ -94,14 +96,13 @@ class Character {
     };
 
     public CharacterDead = () => { // checar si funciona
+        this.character = this.spritedead;
+        this.sWidth = 57;
+        this.offsetx = 89.5; 
         this.currentCharFrame = 0;
-        this.offsetx = 94.2;
-        this.frameCounter += 1;
-        if (this.currentCharFrame < 10) { 
-            if (this.frameCounter % 6 === 0) {
-                this.currentCharFrame = (this.currentCharFrame + 1);
-            }
-        }
+        this.lastMouseEvent = "dead";
+        this.currentMouseEvent = "dead";
+        
     };
 
     public mouseMovementHandler = (event: MouseEvent) => {
@@ -196,19 +197,27 @@ class Character {
             
         }
 
+        if (this.currentMouseEvent === "dead" && this.lastMouseEvent === "dead") {
+            this.frameCounter += 1;
+            if (this.currentCharFrame < 9) { 
+                if (this.frameCounter % 6 === 0) {
+                    this.currentCharFrame = (this.currentCharFrame + 1);
+                }
+            }  
+        }
+
     };
 
     public render = () => {
         const {context} = GameContext;
         let [xpos, ypos] = this.position;
         const sy = 0;
-        const sWidth = 57;
-        const sHeight = 80;
+        
 
         context.save();
         context.beginPath();
         context.translate(xpos, ypos);
-        context.drawImage(this.character,this.currentCharFrame * this.offsetx, sy, sWidth, sHeight, 0, 0,this.charWidth,this.charHeight);
+        context.drawImage(this.character,this.currentCharFrame * this.offsetx, sy, this.sWidth, this.sHeight, 0, 0,this.charWidth,this.charHeight);
         context.closePath();
         context.restore();
 

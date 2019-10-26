@@ -16,10 +16,10 @@ class laser{
     private axis: number = null;
     private horizontal: boolean = null;
     
-    private RightSide = this.position[0] + this.laser.naturalWidth;
+    private RightSide = this.position[0] + this.laser.naturalWidth/2;
     private LeftSide = this.position[0];
     private TopSide = this.position[1];
-    private BottomSide = this.position[1] + this.laser.naturalHeight;
+    private BottomSide = this.position[1] + this.laser.naturalHeight/2;
 
     public getPosition(){
         return this.position;
@@ -117,12 +117,11 @@ class laser{
 
     public checkCollision = (Character: Character) => {
         const mRight = Character.getRightSide() + 20;
-        const mLeft = Character.getLeftSide() - 20;
+        const mLeft = Character.getLeftSide() + 50;
         const mTop = Character.getTopSide() + 20;
         const mBottom = Character.getBottomSide() - 20;
 
         if (this.LeftSide  < mRight && this.RightSide > mLeft && this.TopSide < mBottom && this.BottomSide > mTop) {
-            // incrementa score y la moneda aparece en otra parte.
             Character.CharacterDead();
         }
     }

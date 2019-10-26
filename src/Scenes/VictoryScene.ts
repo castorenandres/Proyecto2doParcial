@@ -15,7 +15,7 @@ class VicotryScene extends Scene {
 
         context.save();
         context.beginPath();
-        
+        // checar que quede bonito
         context.textAlign = "center";
         context.fillStyle = "teal";
         context.font = "25px sans-serif";
@@ -48,6 +48,8 @@ class VicotryScene extends Scene {
             case "Enter":
                 if (this.currentOption === 0){
                     engine.setCurrentScene(new MenuScene());
+                } else if (this.currentOption === 1) { // checar si se pone
+                    engine.setCurrentScene(new CreditScene());
                 }
                 break;
         };
