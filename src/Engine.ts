@@ -32,9 +32,13 @@ class Engine{
         this.currentScene.KeyDownHandler(event, this);
       };
     
-      public keyupHandler = (event: KeyboardEvent) => {
+    public keyupHandler = (event: KeyboardEvent) => {
         this.currentScene.KeyUpHandler(event);
-      };
+    };
+
+    public getEngine () {
+        return this
+    }
 
     public clearScreen = () => {
         const context = GameContext.context;

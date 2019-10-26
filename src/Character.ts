@@ -60,6 +60,10 @@ class Character {
         return this.BottomSide;
     }
 
+    public getScore() {
+        return this.score;
+    }
+
     public constructor () {
         const {context} = GameContext;
         const {width, height} = context.canvas;

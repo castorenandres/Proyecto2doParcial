@@ -6,6 +6,7 @@ import Background from "../Background";
 import Soundtrack from "/assets/soundtrack.mp3";
 import Moneda from "../Moneda"
 import Laser from "../laser";
+import VicotryScene from "./VictoryScene";
 //import laser
 
 class Playing extends Scene {
@@ -15,6 +16,7 @@ class Playing extends Scene {
     private laser: Laser = null;
     private background = new Background(this);
     private soundtrack = new Audio(Soundtrack);
+    private engine: Engine = null;
     
 
     public handleMouseDown = (event: MouseEvent) => {
@@ -64,6 +66,12 @@ class Playing extends Scene {
         }
 
         this.character.checkCollisionCoin(this.moneda);
+
+        
+        if (this.character.getScore() === 10) {
+            this.engine.getEngine();
+            this.engine.setCurrentScene(new VicotryScene());
+        }
     }
 
     public render =() => {
