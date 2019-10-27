@@ -14,11 +14,11 @@ class Character {
     private position: coords = [0,0];
     private charWidth: number = 57;
     private charHeight: number = 80;
-    private sWidth = 57;
-    private sHeight = 80;
+    private sWidth = 57; // sprite width
+    private sHeight = 80; // sprite height
     private frameCounter = 0;
     private currentCharFrame = 0;
-    private click: boolean = false;
+    private click: boolean = false; // flag for mouse click
     private character = new Image();
     private lastMouseEvent: string = "";
     private currentMouseEvent: string = "";
@@ -31,7 +31,7 @@ class Character {
     private TopSide = this.position[1];
     private BottomSide = this.position[1] + this.charHeight;
 
-
+    // sprites and sounds
     private spritedead = new Image();
     private spriteidle  = new Image();
     private spritejump = new Image();
@@ -39,10 +39,6 @@ class Character {
     private soundJump = new Audio(jumpSound);
     private soundLand = new Audio(landSound);
     private coinGrab = new Audio(grabCoin);
-
-    public getPosition () {
-        return this.position;
-    }
 
     public getRightSide () {
         return this.RightSide;
@@ -76,20 +72,17 @@ class Character {
         this.coinGrab.volume = 1;
 
         this.character = this.spriteidle;
-
-        
-
         this.position = [(width - this.charWidth) / 2, height * 0.55 - this.charHeight];
     };
 
-    public checkCollisionCoin = (moneda: Moneda) => { // checar si es mejor aqui o en moneda o current scene
+    public checkCollisionCoin = (moneda: Moneda) => { 
         const mRight = moneda.getRightSide() + 20;
         const mLeft = moneda.getLeftSide() - 20;
         const mTop = moneda.getTopSide() + 20;
         const mBottom = moneda.getBottomSide() - 20;
 
         if (this.LeftSide  < mRight && this.RightSide > mLeft && this.TopSide < mBottom && this.BottomSide > mTop) {
-            // incrementa score y la moneda aparece en otra parte.
+            // changes coin's position and increments score by one
             if(this.coinGrab.paused) {
                 this.coinGrab.play();
                 moneda.changeCoinPosition();
@@ -99,7 +92,7 @@ class Character {
         }
     };
 
-    public CharacterDead = () => { // checar si funciona
+    public CharacterDead = () => { // sets the sprite to spriteKnightDead and changes the last and current mouse event to run the animation
         this.character = this.spritedead;
         this.sWidth = 57;
         this.offsetx = 89.5; 
@@ -111,10 +104,8 @@ class Character {
 
     public mouseMovementHandler = (event: MouseEvent) => {
         let [coordx, coordy] = this.position;
-        const {context} = GameContext;
-        const {width, height} = context.canvas;
-        console.log(this.RightSide)
-        // mouse tiene que estar sobre el personaje para moverse
+
+        // Mouse has to be over the character to move
         if (event.offsetX < this.RightSide  && event.offsetX > this.LeftSide && event.offsetY < this.BottomSide && event.offsetY > this.TopSide) {
             if (event.type === "mousedown" && (this.currentMouseEvent === "" || this.currentMouseEvent === "mouseup")){
                 if(this.soundJump.paused) {
@@ -136,25 +127,20 @@ class Character {
             }
         }
 
-        if (this.click) { // mouse has to enter the character hit box to be able to move pendiente
+        if (this.click) { // If click is true, the character moves to the center of the cursor
             coordx = (event.offsetX - this.charWidth / 2);
             coordy = (event.offsetY - this.charHeight / 2);
         }
-        this.position = [coordx, coordy];
+        this.position = [coordx, coordy]; // updates the new position of the character
     };
 
 
     public update = () => {
-        const {context} = GameContext;
-        const {width} = context.canvas;
         this.RightSide = this.position[0] + this.charWidth;
         this.LeftSide = this.position[0];
         this.TopSide = this.position[1];
         this.BottomSide = this.position[1] + this.charHeight;
 
-        let [xpos, ypos] = this.position;
-
-        // posicion actual con movimiento de mouse pendiente
         this.frameCounter += 1;
         if (this.currentMouseEvent === "" ) { // idle animation 
             this.character = this.spriteidle;
@@ -201,7 +187,7 @@ class Character {
             
         }
 
-        if (this.currentMouseEvent === "dead" && this.lastMouseEvent === "dead") {
+        if (this.currentMouseEvent === "dead" && this.lastMouseEvent === "dead") { // dead animation
             this.frameCounter += 1;
             if (this.currentCharFrame < 9) { 
                 if (this.frameCounter % 6 === 0) {
@@ -217,7 +203,7 @@ class Character {
         let [xpos, ypos] = this.position;
         const sy = 0;
         
-
+        // Character
         context.save();
         context.beginPath();
         context.translate(xpos, ypos);
@@ -225,6 +211,7 @@ class Character {
         context.closePath();
         context.restore();
 
+        // Score
         context.save();
         context.beginPath();
         context.font = "50px Arial";

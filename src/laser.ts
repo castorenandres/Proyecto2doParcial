@@ -11,26 +11,18 @@ type coords = [number, number];
 class laser{
 
     private position: coords = [0, 0]
-    private direction: coords = [0,0]
-    private laserWidth: number = 50;
-    private laserHeight: number = 100;
     private speed = 250;
     private laser = new Image();
     private axis: number = null;
     private horizontal: boolean = null;
     
+    // hitbox
     private RightSide = this.position[0] + this.laser.naturalWidth/2;
     private LeftSide = this.position[0];
     private TopSide = this.position[1];
     private BottomSide = this.position[1] + this.laser.naturalHeight/2;
 
-    public getPosition(){
-        return this.position;
-    }
-
     constructor(){
-        const {context} = GameContext;
-        const { width, height} = context.canvas;
         this.laser.src = laserImage;
         let [posX, posY] = this.position;
 
@@ -48,7 +40,7 @@ class laser{
             posY = (this.random(5) * 125) + 87.5 + 45
             this.position = [0, posY]
             this.horizontal = true;
-            //Rotar la imagen 90 grados
+            //Rotate 90 degrees
         }
  
     }
@@ -88,7 +80,7 @@ class laser{
                     posY = (this.random(5) * 125) + 87.5 + 45
                     this.position = [0, posY]
                     this.horizontal = true;
-                    //Rotar la imagen 90 grados
+                    //Rotate 90 degrees
                 }
             }
         }
@@ -98,7 +90,7 @@ class laser{
     public render = () => {
         const { context } = GameContext;
         let[posX, posY] = this.position;
-        if(this.horizontal == false){
+        if(this.horizontal === false){
             context.save();
             context.beginPath();
             context.drawImage(this.laser, posX, posY);

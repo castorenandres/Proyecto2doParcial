@@ -9,7 +9,7 @@ import Playing from "./Playing";
 class GameOver   extends Scene {
     private backgroundImage = new Image();
     private currentOption: number = 0;
-    private options = ["menu", "Jugar de nuevo"];
+    private options = ["menu", "Play again"];
     public enter = () => {};
     public  update = (engine:Engine) => {};
     public  render = () => {
@@ -20,14 +20,9 @@ class GameOver   extends Scene {
         const naturalWidth = this.backgroundImage.naturalWidth;
         const naturalHeight = this.backgroundImage.naturalHeight;
 
-        
-
-        
-
         context.save();
         context.beginPath();
         context.drawImage(this.backgroundImage, 0, 0, naturalWidth, naturalHeight);
-        // checar que quede bonito
         context.textAlign = "center";
         context.fillStyle = "red";
         context.font = "50px sans-serif";
@@ -38,7 +33,6 @@ class GameOver   extends Scene {
             }
             context.fillText(this.options[i], width / 2, height / 2 + i * 60);
         }
-
         context.closePath();
         context.restore();
     };
@@ -60,7 +54,7 @@ class GameOver   extends Scene {
             case "Enter":
                 if (this.currentOption === 0){
                     engine.setCurrentScene(new MenuScene());
-                } else if (this.currentOption === 1) { // checar si se pone
+                } else if (this.currentOption === 1) { 
                     engine.setCurrentScene(new Playing());
                 }
                 break;

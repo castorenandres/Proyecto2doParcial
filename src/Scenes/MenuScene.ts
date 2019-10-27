@@ -7,7 +7,7 @@ import Creditos from "./Creditos"
 class MenuScene extends Scene {
 
     private currenOption: number = 0;
-    private options = ["Jugar", "Creditos"]
+    private options = ["Play", "Credits"]
 
 
     public enter = () => {};

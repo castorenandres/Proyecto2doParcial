@@ -25,15 +25,12 @@ class Creditos extends Scene {
 
         context.save();
         context.beginPath();
-        // checar que quede bonito
         context.textAlign = "center";
         context.fillStyle = "lime";
         context.font = "20px sans-serif";
         context.strokeStyle = "black";
-        
         context.strokeText(this.options[0], width - 50, height - 10);
         context.fillText(this.options[0], width -95, height -10);
-
         context.closePath();
         context.restore();
     };

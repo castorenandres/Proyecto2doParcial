@@ -19,10 +19,6 @@ class Moneda {
     private TopSide = this.position[1];
     private BottomSide = this.position[1] + this.monedaHeight;
 
-    public getPosition(){
-        return this.position;
-    }
-
     public getRightSide () {
         return this.RightSide;
     }
@@ -39,14 +35,7 @@ class Moneda {
         return this.BottomSide;
     }
 
-    //recibe una position [x,y]
-    public setPosition(position){
-        this.position = position;
-    }
-
     public constructor () {
-        const {context} = GameContext;
-        const {width, height} = context.canvas;
         this.spritemoneda.src = spriteMoneda;
         this.moneda = this.spritemoneda;
 
@@ -54,17 +43,13 @@ class Moneda {
     }
 
     public update = () => {
-        const {context} = GameContext;
-        const {width} = context.canvas;
         this.RightSide = this.position[0] + this.monedaWidth;
         this.LeftSide = this.position[0];
         this.TopSide = this.position[1];
         this.BottomSide = this.position[1] + this.monedaHeight;
 
-        let [xpos, ypos] = this.position;
-
         this.frameCounter +=1;
-        if(this.frameCounter % 3 == 0) {
+        if(this.frameCounter % 3 == 0) { // rotate animation
             this.currentCharFrame = (this.currentCharFrame + 1) % 9;
         }
     }

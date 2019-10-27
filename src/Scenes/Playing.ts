@@ -7,13 +7,11 @@ import Soundtrack from "/assets/soundtrack.mp3";
 import Moneda from "../Moneda"
 import Laser from "../laser";
 import VicotryScene from "./VictoryScene";
-//import laser
 
 class Playing extends Scene {
     private lasers: Laser[] = [];
     private character: Character = null;
     private moneda: Moneda = null;
-    private laser: Laser = null;
     private background = new Background(this);
     private soundtrack = new Audio(Soundtrack);
     
@@ -26,7 +24,7 @@ class Playing extends Scene {
     public  KeyDownHandler = (event: KeyboardEvent, engine: Engine) => {
         const {key} = event;
 
-        switch(key){
+        switch(key){ // pause/reset game
             case "Escape":
                 this.soundtrack.pause();
                 engine.setCurrentScene(new MenuScene());
@@ -40,7 +38,6 @@ class Playing extends Scene {
         this.soundtrack.volume = 0.2;
         this.soundtrack.loop = true;
         this.soundtrack.play();
-        //this.laser = new Laser();
         for(let x = 0; x < 4; x++){
             this.lasers.push(new Laser())
         }
@@ -49,9 +46,7 @@ class Playing extends Scene {
     public update = (engine:Engine) => {
         this.character.update();
         this.moneda.update();
-
         this.character.checkCollisionCoin(this.moneda);
-        //this.laser.update();
         for(let x = 0; x < 4; x++){
             this.lasers[x].update();
             if(this.lasers[x].checkCollisionBool(this.character, engine)){
@@ -62,7 +57,6 @@ class Playing extends Scene {
 
         this.character.checkCollisionCoin(this.moneda);
 
-        
         if (this.character.getScore() === 10) {
             this.soundtrack.pause();
             engine.setCurrentScene(new VicotryScene());
@@ -71,8 +65,6 @@ class Playing extends Scene {
 
     public render =() => {
         this.background.render();
-       
-        //this.laser.render();
         this.character.render();
         this.moneda.render();
         for(let x = 0; x < 4; x++){

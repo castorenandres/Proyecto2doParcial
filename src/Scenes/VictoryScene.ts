@@ -8,7 +8,7 @@ import background from "/assets/victoriaBG.jpg"
 class VicotryScene extends Scene {
     private backgroundImage = new Image();
     private currentOption: number = 0;
-    private options = ["menu", "creditos"];
+    private options = ["menu", "credits"];
     public enter = () => {};
     public  update = (engine:Engine) => {};
     public  render = () => {
@@ -23,11 +23,10 @@ class VicotryScene extends Scene {
         context.save();
         context.beginPath();
         context.drawImage(this.backgroundImage, 0, 0, naturalWidth, naturalHeight);
-        // checar que quede bonito
         context.textAlign = "center";
-        context.fillStyle = "lime";
+        context.fillStyle = "teal";
         context.font = "25px sans-serif";
-        context.strokeStyle = "lime";
+        context.strokeStyle = "teal";
         context.fillText(this.options[0], width - 750, height - 35);
         context.fillText(this.options[1], width - 650, height - 35);
         for (let i = 0; i < this.options.length; i++) {
@@ -36,9 +35,7 @@ class VicotryScene extends Scene {
             } else if (i === this.currentOption && i === 1) {
                 context.strokeText(this.options[i], width - 650, height - 35);
             }
-            
         }
-
         context.closePath();
         context.restore();
     };
@@ -60,7 +57,7 @@ class VicotryScene extends Scene {
             case "Enter":
                 if (this.currentOption === 0){
                     engine.setCurrentScene(new MenuScene());
-                } else if (this.currentOption === 1) { // checar si se pone
+                } else if (this.currentOption === 1) { 
                     engine.setCurrentScene(new Creditos());
                 }
                 break;
