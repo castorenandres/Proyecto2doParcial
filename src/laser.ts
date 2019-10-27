@@ -2,6 +2,8 @@ import GameContext from "./GameContext";
 import Character from "./Character";
 import laserImage from "/assets/laserBueno.png"
 import Time from "./Time"
+import Engine from "./Engine"
+import GameOver from "./Scenes/GameOver"
 
 type coords = [number, number];
 
@@ -115,7 +117,7 @@ class laser{
         return Math.floor(Math.random() * Math.floor(max))
     }
 
-    public checkCollision = (Character: Character) => {
+    public checkCollision = (Character: Character, engine: Engine) => {
         const mRight = Character.getRightSide() + 20;
         const mLeft = Character.getLeftSide() + 50;
         const mTop = Character.getTopSide() + 20;
@@ -123,6 +125,9 @@ class laser{
 
         if (this.LeftSide  < mRight && this.RightSide > mLeft && this.TopSide < mBottom && this.BottomSide > mTop) {
             Character.CharacterDead();
+            setTimeout(function () {
+                engine.setCurrentScene(new GameOver);
+            }, 3000);
         }
     }
 

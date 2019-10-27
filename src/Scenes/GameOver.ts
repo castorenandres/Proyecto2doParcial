@@ -2,13 +2,13 @@ import Scene from "./Scene";
 import GameContext from "../GameContext";
 import Engine from "../Engine";
 import MenuScene from "./MenuScene";
-import Creditos from "./Creditos"
-import background from "/assets/victoriaBG.jpg"
+import background from "/assets/GameOverBG.jpg"
+import Playing from "./Playing";
 
-class VicotryScene extends Scene {
+class GameOver   extends Scene {
     private backgroundImage = new Image();
     private currentOption: number = 0;
-    private options = ["menu", "creditos"];
+    private options = ["menu", "Jugar de nuevo"];
     public enter = () => {};
     public  update = (engine:Engine) => {};
     public  render = () => {
@@ -57,11 +57,11 @@ class VicotryScene extends Scene {
                 if (this.currentOption === 0){
                     engine.setCurrentScene(new MenuScene());
                 } else if (this.currentOption === 1) { // checar si se pone
-                    engine.setCurrentScene(new Creditos());
+                    engine.setCurrentScene(new Playing());
                 }
                 break;
         };
     };
 };
 
-export default VicotryScene;
+export default GameOver;
