@@ -5,6 +5,7 @@ import Moneda from "./Moneda";
 import Scene from "./Scenes/Scene";
 import Playing from "./Scenes/Playing";
 import Laser from "./laser";
+import MenuScene from "./Scenes/MenuScene";
 
 class Engine{
     private currentScene: Scene = null;
@@ -67,7 +68,7 @@ class Engine{
        //Sequitan por las escenas
 
        //iniciaria en el menu y se haria el cambio ahi
-       this.currentScene = new Playing();
+       this.currentScene = new MenuScene();
        this.currentScene.enter();
 
     };

@@ -2,6 +2,7 @@ import Scene from "./Scene";
 import GameContext from "../GameContext";
 import Engine from "../Engine";
 import MenuScene from "./MenuScene";
+import Creditos from "./Creditos"
 
 class VicotryScene extends Scene {
     private currentOption: number = 0;
@@ -49,7 +50,7 @@ class VicotryScene extends Scene {
                 if (this.currentOption === 0){
                     engine.setCurrentScene(new MenuScene());
                 } else if (this.currentOption === 1) { // checar si se pone
-                    engine.setCurrentScene(new CreditScene());
+                    engine.setCurrentScene(new Creditos());
                 }
                 break;
         };
