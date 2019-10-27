@@ -16,7 +16,6 @@ class Playing extends Scene {
     private laser: Laser = null;
     private background = new Background(this);
     private soundtrack = new Audio(Soundtrack);
-    private engine: Engine = null;
     
 
     public handleMouseDown = (event: MouseEvent) => {
@@ -54,7 +53,7 @@ class Playing extends Scene {
         }
     }
 
-    public update = () => {
+    public update = (engine:Engine) => {
         this.character.update();
         this.moneda.update();
 
@@ -69,8 +68,8 @@ class Playing extends Scene {
 
         
         if (this.character.getScore() === 10) {
-            this.engine.getEngine();
-            this.engine.setCurrentScene(new VicotryScene());
+            this.soundtrack.pause();
+            engine.setCurrentScene(new VicotryScene);
         }
     }
 

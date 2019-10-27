@@ -8,7 +8,7 @@ class VicotryScene extends Scene {
     private currentOption: number = 0;
     private options = ["menu", "creditos"];
     public enter = () => {};
-    public  update = () => {};
+    public  update = (engine:Engine) => {};
     public  render = () => {
         const context = GameContext.context;
         const width = context.canvas.width;

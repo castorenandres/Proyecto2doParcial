@@ -11,7 +11,7 @@ class MenuScene extends Scene {
 
 
     public enter = () => {};
-    public  update = () => {};
+    public  update = (engine:Engine) => {};
     public  render = () => {
         const context = GameContext.context;
         const width = context.canvas.width;

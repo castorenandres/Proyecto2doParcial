@@ -1,7 +1,7 @@
 import Engine from "../Engine";
 class Creditos {
     enter = () => {};
-    public update = () => {};
+    public update = (engine:Engine) => {};
     public render = () => {};
 
     public handleMouseDown = (event: MouseEvent) => {};

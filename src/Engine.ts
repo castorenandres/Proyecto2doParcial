@@ -77,7 +77,7 @@ class Engine{
         this.clearScreen();
         Time.update();
 
-        this.currentScene.update();
+        this.currentScene.update(this);
         this.currentScene.render();
 
         /*
