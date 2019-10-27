@@ -5,6 +5,7 @@ import MenuScene from "./MenuScene";
 import background from "/assets/GameOverBG.jpg"
 import Playing from "./Playing";
 
+
 class GameOver   extends Scene {
     private backgroundImage = new Image();
     private currentOption: number = 0;
@@ -19,6 +20,9 @@ class GameOver   extends Scene {
         const naturalWidth = this.backgroundImage.naturalWidth;
         const naturalHeight = this.backgroundImage.naturalHeight;
 
+        
+
+        
 
         context.save();
         context.beginPath();

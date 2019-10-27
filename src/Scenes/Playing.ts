@@ -54,6 +54,9 @@ class Playing extends Scene {
         //this.laser.update();
         for(let x = 0; x < 4; x++){
             this.lasers[x].update();
+            if(this.lasers[x].checkCollisionBool(this.character, engine)){
+                this.soundtrack.pause();
+            }
             this.lasers[x].checkCollision(this.character, engine);
         }
 
