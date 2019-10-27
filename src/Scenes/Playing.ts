@@ -28,18 +28,11 @@ class Playing extends Scene {
 
         switch(key){
             case "Escape":
+                this.soundtrack.pause();
                 engine.setCurrentScene(new MenuScene());
                 break;
         }
     };
-
-    public getCharacter = () => {
-        return this.character;
-    }
-
-    public getMoneda =() => {
-        return this.getMoneda;
-    }
 
     enter = () => {
         this.character = new Character();
@@ -69,7 +62,7 @@ class Playing extends Scene {
         
         if (this.character.getScore() === 10) {
             this.soundtrack.pause();
-            engine.setCurrentScene(new VicotryScene);
+            engine.setCurrentScene(new VicotryScene());
         }
     }
 
