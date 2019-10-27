@@ -18,15 +18,23 @@ class MenuScene extends Scene {
         const height = context.canvas.height;
 
         context.save();
+        context.rect(0, 0, 800, 800);
+        context.fillStyle = "#a61b11"
+        context.fill();
+        context.restore();
+
+        context.save();
         context.beginPath();
         context.textAlign = "center";
-        context.fillStyle = "purple";
-        context.strokeStyle = "red";
+        context.fillStyle = "white";
+        context.font = "50px sans"
+        context.strokeStyle = "black";
         for (let i = 0; i < this.options.length; i++){
             if (i == this.currenOption){
-                context.strokeText(this.options[i], width / 2, height / 2 + i *35)
+                context.lineWidth = 5;
+                context.strokeText(this.options[i], width / 2, height / 2 + i *70)
             }
-            context.fillText(this.options[i], width / 2, height / 2 + i *35);
+            context.fillText(this.options[i], width / 2, height / 2 + i *70);
         }
         context.closePath();
         context.restore();
