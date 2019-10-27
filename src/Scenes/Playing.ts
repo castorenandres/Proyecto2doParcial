@@ -57,7 +57,7 @@ class Playing extends Scene {
             if(this.lasers[x].checkCollisionBool(this.character, engine)){
                 this.soundtrack.pause();
             }
-            this.lasers[x].checkCollision(this.character, engine);
+            this.lasers[x].checkCollision(this.character, engine, this.moneda);
         }
 
         this.character.checkCollisionCoin(this.moneda);

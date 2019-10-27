@@ -4,6 +4,7 @@ import laserImage from "/assets/laserBueno.png"
 import Time from "./Time"
 import Engine from "./Engine"
 import GameOver from "./Scenes/GameOver"
+import Moneda from "./Moneda"
 
 type coords = [number, number];
 
@@ -75,19 +76,20 @@ class laser{
         this.position = [posX, posY];
         
         
-
-        if(posY < 0 || posY > width || posX < 0 || posX > width){
-            if(this.axis < .5){
-                //Vertial
-                posX = (this.random(5) * 125) + 87.5 + 45
-                this.position = [posX, 0]
-                this.horizontal = false;
-            }else{
-                //Horizontal
-                posY = (this.random(5) * 125) + 87.5 + 45
-                this.position = [0, posY]
-                this.horizontal = true;
-                //Rotar la imagen 90 grados
+        if(posY != -50 && posX != -50){
+            if(posY < 0 || posY > width || posX < 0 || posX > width){
+                if(this.axis < .5){
+                    //Vertial
+                    posX = (this.random(5) * 125) + 87.5 + 45
+                    this.position = [posX, 0]
+                    this.horizontal = false;
+                }else{
+                    //Horizontal
+                    posY = (this.random(5) * 125) + 87.5 + 45
+                    this.position = [0, posY]
+                    this.horizontal = true;
+                    //Rotar la imagen 90 grados
+                }
             }
         }
 
@@ -117,14 +119,17 @@ class laser{
         return Math.floor(Math.random() * Math.floor(max))
     }
 
-    public checkCollision = (Character: Character, engine: Engine) => {
+    public checkCollision = (Character: Character, engine: Engine, Moneda: Moneda) => {
         const mRight = Character.getRightSide() + 20;
         const mLeft = Character.getLeftSide() + 50;
         const mTop = Character.getTopSide() + 20;
         const mBottom = Character.getBottomSide() - 20;
 
         if (this.LeftSide  < mRight && this.RightSide > mLeft && this.TopSide < mBottom && this.BottomSide > mTop) {
+            this.position = [-50, -50]
+            this.speed = 0;
             Character.CharacterDead();
+            Moneda.quitarDelTablero()
             setTimeout(function () {
                 engine.setCurrentScene(new GameOver);
             }, 3000);

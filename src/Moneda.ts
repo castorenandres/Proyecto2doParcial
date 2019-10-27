@@ -94,6 +94,10 @@ class Moneda {
         
     }
 
+    public quitarDelTablero(){
+        this.position = [ -50, -50];
+    }
+
     
 }
 
