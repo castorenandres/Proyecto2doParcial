@@ -54,10 +54,10 @@ class MenuScene extends Scene {
                 break;
             case "Enter":
                 if(this.currenOption == 0) {
-                    engine.setCurrentScene (new Playing);
+                    engine.setCurrentScene (new Playing());
                 }
                 if(this.currenOption == 1) {
-                    engine.setCurrentScene(new Creditos);
+                    engine.setCurrentScene(new Creditos());
                 }
         }
     };
