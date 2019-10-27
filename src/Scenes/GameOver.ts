@@ -29,14 +29,14 @@ class GameOver   extends Scene {
         context.drawImage(this.backgroundImage, 0, 0, naturalWidth, naturalHeight);
         // checar que quede bonito
         context.textAlign = "center";
-        context.fillStyle = "teal";
-        context.font = "25px sans-serif";
-        context.strokeStyle = "lime";
+        context.fillStyle = "red";
+        context.font = "50px sans-serif";
+        context.strokeStyle = "white";
         for (let i = 0; i < this.options.length; i++) {
             if (i === this.currentOption) {
-                context.strokeText(this.options[i], width / 2, height / 2 + i * 35);
+                context.strokeText(this.options[i], width / 2, height / 2 + i * 60);
             }
-            context.fillText(this.options[i], width / 2, height / 2 + i * 35);
+            context.fillText(this.options[i], width / 2, height / 2 + i * 60);
         }
 
         context.closePath();

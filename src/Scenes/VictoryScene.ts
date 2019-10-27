@@ -25,14 +25,18 @@ class VicotryScene extends Scene {
         context.drawImage(this.backgroundImage, 0, 0, naturalWidth, naturalHeight);
         // checar que quede bonito
         context.textAlign = "center";
-        context.fillStyle = "teal";
+        context.fillStyle = "lime";
         context.font = "25px sans-serif";
         context.strokeStyle = "lime";
+        context.fillText(this.options[0], width - 750, height - 35);
+        context.fillText(this.options[1], width - 650, height - 35);
         for (let i = 0; i < this.options.length; i++) {
-            if (i === this.currentOption) {
-                context.strokeText(this.options[i], width / 2, height / 2 + i * 35);
+            if (i === this.currentOption && i === 0) {
+                context.strokeText(this.options[i], width - 750, height - 35);
+            } else if (i === this.currentOption && i === 1) {
+                context.strokeText(this.options[i], width - 650, height - 35);
             }
-            context.fillText(this.options[i], width / 2, height / 2 + i * 35);
+            
         }
 
         context.closePath();
